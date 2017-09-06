@@ -635,7 +635,7 @@ DB.prototype.createDiffStream = function (key, checkout) {
     if (!heads.length) return cb(null, null)
 
     for (var i = 0; i < heads.length; i++) {
-      self._visitDiff(key, path, heads[i], {}, {}, checkout, onDone)
+      self._visitTrie(key, path, heads[i], {}, {}, checkout, onDone)
     }
   })
 
@@ -664,7 +664,7 @@ DB.prototype.checkout = function (cb) {
   })
 }
 
-DB.prototype._visitDiff = function (key, path, node, head, checkout, halt, cb) {
+DB.prototype._visitTrie = function (key, path, node, head, checkout, halt, cb) {
   var self = this
   var missing = 0
 
@@ -696,7 +696,7 @@ DB.prototype._visitDiff = function (key, path, node, head, checkout, halt, cb) {
       var entry = entrySet[j]
       missing++
       self._writers[entry.feed].get(entry.seq, function (err, node) {
-        self._visitDiff(key, path, node, head, checkout, halt, function () {
+        self._visitTrie(key, path, node, head, checkout, halt, function () {
           // TODO: handle error
           if (!--missing) fin(null)
         })
