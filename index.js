@@ -727,7 +727,7 @@ DB.prototype._visitTrie = function (key, path, node, head, snapshot, halt, cb) {
   cb = once(cb)
 
   // We've traveled past 'snapshot' -- bail.
-  if (halt && halt[node.feed] && halt[node.feed] > node.seq) {
+  if (halt && halt[node.feed] !== undefined && halt[node.feed] >= node.seq) {
     return cb()
   }
 
