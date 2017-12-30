@@ -7,7 +7,7 @@
     "array-lru": "^1.1.1",
     "bulk-write-stream": "^1.1.3",
     "codecs": "^1.2.0",
-    "hypercore": "^6.9.0",
+    "hypercore": "git://github.com/d4tocchini/hypercore.git#1046d4d1c9365e1e09eafd69b1fbabb4394628bc",
     "hypercore-protocol": "^6.4.0",
     "inherits": "^2.0.3",
     "mutexify": "^1.1.0",
